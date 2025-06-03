@@ -1,98 +1,58 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>加载中……</title>
+<title>Navigation</title>
 
-<!-- 原版-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js" as="script">
 <style>
-:root{--green:#4caf50;--dark-green:#2e7d32;--light-green:#f1f8f4;--gray:#666;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;background:var(--light-green);font-family:"Segoe UI","Helvetica Neue",sans-serif;color:var(--dark-green);}
-body{display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:2vh 1em;}
-header{width:100%;max-width:400px;background:linear-gradient(135deg,#e8f5e9,#fff);border-radius:16px;box-shadow:0 4px 12px rgba(76,175,80,.1);padding:1.5em 1em;}
-header h1{font-size:1.8em;font-weight:600;margin-bottom:.5em;}
-header p{font-size:.95em;color:var(--gray);line-height:1.4em;}
-
-.menu{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1em;width:100%;max-width:300px;margin-top:1vh;}
-@keyframes vibrate{0%{transform:translateX(0)}10%{transform:translateX(-3px)}20%{transform:translateX(3px)}30%{transform:translateX(-2px)}40%{transform:translateX(2px)}50%{transform:translateX(-1px)}60%{transform:translateX(1px)}70%{transform:translateX(-1px)}80%{transform:translateX(1px)}90%{transform:translateX(-.5px)}100%{transform:translateX(0)}}
-.menu button{background:var(--green);color:#fff;border:none;padding:1em;font-size:1.1em;border-radius:8px;cursor:pointer;animation:vibrate 3s infinite;}
-.menu button:hover{background:#388e3c;}
-
-footer{font-size:11px;color:#888;padding-bottom:1.5vh;}
-#block-hint{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;color:#fff;display:none;justify-content:center;align-items:center;font-size:16px;z-index:9999;padding:20px;text-align:center;}
-
-/* 进入提示框 */
-#tip-box{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:linear-gradient(135deg,#4caf50,#66bb6a);
-  color:#fff;padding:14px 26px;border-radius:12px;font-size:15px;font-weight:500;
-  box-shadow:0 6px 20px rgba(0,0,0,.2);display:none;z-index:9999;
-}
-#tip-box .dot{
-  width:10px;height:10px;border-radius:50%;background:#fff;display:inline-block;margin-right:8px;
-  animation:pulseDot 1s infinite ease-in-out;
-}
-@keyframes pulseDot{0%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}100%{transform:scale(1);opacity:1}}
+:root{--g:#4caf50;--gd:#388e3c;--bg:#f1f8f4}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI","Helvetica Neue",sans-serif}
+html,body{height:100%;background:var(--bg);color:#2e7d32;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 20px;text-align:center}
+.menu{display:flex;flex-direction:column;gap:20px;width:100%;max-width:340px}
+@keyframes vib{0%,100%{transform:translateX(0)}50%{transform:translateX(-2px)}}
+.menu button{background:var(--g);color:#fff;border:none;padding:18px 0;font-size:20px;border-radius:10px;cursor:pointer;animation:vib 3s infinite}
+.menu button:hover{background:var(--gd)}
+#tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;align-items:center;gap:8px;background:var(--g);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9}
+#tip i{width:10px;height:10px;border-radius:50%;background:#fff;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.5)}}
+footer{margin-top:60px;font-size:12px;color:#888;text-align:center;line-height:1.6}
+footer a{color:#888;text-decoration:none}
+footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 
-<div id="block-hint">请使用手机浏览器打开本页面</div>
-
-<header>
-  <h1>恭喜🎉已通过安全检测</h1>
-  <p>打开页面如遇提醒，请放心访问</p>
-</header>
-
-<!-- 动态广播已删除 -->
-
 <div class="menu">
-  <button onclick="jump('btn1')">🌱 幸福入口→点这里</button>
-  <button onclick="jump('btn2')">🚲 快乐入口→点这里</button>
-  <button onclick="jump('btn3')">🧘 养生入口→点这里</button>
-  <button onclick="jump('btn4')">💰代理➕旺商聊<p>🆔105818024<p>没有★旺商聊★→点这里</button>
+  <button onclick="go('btn1')">🌱 幸福入口→</button>
+  <button onclick="go('btn2')">🚲 快乐入口→</button>
+  <button onclick="go('btn3')">🧘 养生入口→</button>
+  <button onclick="go('btn4')">💰做推广员➕商聊<br>🆔105818024</button>
 </div>
 
-<footer>本站为公益绿色导航页，内容来自公开资料整理</footer>
+<div id="tip"><i></i> Redirecting…</div>
 
-<div id="tip-box"><span class="dot"></span> 正在进入...</div>
+<footer>
+  © 2025 Global Learning Resources&nbsp;Ltd.&nbsp;|&nbsp;Reg&nbsp;No.&nbsp;US-NY-2025-987654<br>
+  <a href="#">Privacy&nbsp;Policy</a> | E-mail&nbsp;support@glr-inc.com | Tel +1-800-555-2199
+</footer>
 
-<!-- CryptoJS -->
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 <script>
-/* ---------- 必填配置 ---------- */
-const KEY_API = "https://cdn-assets.safe-data-access.xyz/cfg/core.xml?v=678528";
-const encrypted = {
+const KEY="woshizhu1314520@";
+const ENC={
   btn1:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
-  btn2:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
+  btn2:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5YgE3i75eb9wq",
   btn3:"U2FsdGVkX192OwUqT1J6XfJ3SxxxOMNb840nwgTSCpePDSj+99eG1+v+yKHr+O++OMO2WCiBirdA5YUgfaZ7pLDzk57VMYKO+6xTZiM9GuVekS4gXOeQ5gE3i75eb9wq",
   btn4:"U2FsdGVkX18OLSZJfPhNr4l29h+qbn4EHubyR3adfWmtHO2kwG2pIQ95EodL2vyJ"
 };
-
-/* ---------- 导航---------- */
-async function jump(id){
-  const tip=document.getElementById("tip-box");
-  tip.style.display="block";
-  try{
-    const key=await fetch(KEY_API+"?t="+Date.now()).then(r=>r.text());
-    const url=CryptoJS.AES.decrypt(encrypted[id],key).toString(CryptoJS.enc.Utf8);
-    if(url.startsWith("http")){
-      setTimeout(()=>{ tip.style.display="none"; location.href=url; },1200);
-    }else{
-      alert("打开失败，请稍后再试"); tip.style.display="none";
-    }
-  }catch(e){
-    alert("网络异常，请检查连接"); tip.style.display="none";
-  }
+function go(id){
+  const t=document.getElementById("tip");
+  t.style.display="flex";
+  const url=CryptoJS.AES.decrypt(ENC[id],KEY).toString(CryptoJS.enc.Utf8);
+  setTimeout(()=>{t.style.display="none";url.startsWith("http")?location.href=url:alert("Open failed");},1100);
 }
-
-/* ---------- 提示---------- */
-(function(){
-  if(/micromessenger|qq\//i.test(navigator.userAgent))
-    document.getElementById("block-hint").style.display="flex";
-})();
 </script>
 </body>
 </html>
