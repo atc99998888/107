@@ -2,22 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Navigation</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js" as="script">
 <style>
-:root{--g:#4caf50;--gd:#388e3c;--bg:#f1f8f4}
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI","Helvetica Neue",sans-serif}
-html,body{height:100%;background:var(--bg);color:#2e7d32;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 20px;text-align:center}
-.menu{display:flex;flex-direction:column;gap:20px;width:100%;max-width:340px}
-@keyframes vib{0%,100%{transform:translateX(0)}50%{transform:translateX(-2px)}}
-.menu button{background:var(--g);color:#fff;border:none;padding:18px 0;font-size:20px;border-radius:10px;cursor:pointer;animation:vib 3s infinite}
-.menu button:hover{background:var(--gd)}
-#tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;align-items:center;gap:8px;background:var(--g);color:#fff;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9}
-#tip i{width:10px;height:10px;border-radius:50%;background:#fff;animation:pulse 1s infinite}
+:root{--g:#4caf50;--gd:#388e3c;--bg:#f1f8f4;}
+html,body{
+  height:100vh;min-height:100vh;width:100vw;
+  background:var(--bg);color:#2e7d32;
+  overflow:hidden;
+}
+body{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:0;text-align:center;min-height:100vh;
+}
+.menu{
+  display:flex;flex-direction:column;gap:20px;width:100%;max-width:340px;min-width:200px;
+  margin-bottom:30px;
+}
+.menu button{
+  background:var(--g);color:#fff;border:none;
+  padding:18px 0;font-size:20px;border-radius:10px;cursor:pointer;
+  transition:background .18s;
+}
+.menu button:hover{background:var(--gd);}
+#tip{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:none;align-items:center;gap:8px;
+  background:var(--g);color:#fff;padding:14px 28px;border-radius:12px;
+  font-size:15px;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9
+}
+#tip i{
+  width:10px;height:10px;border-radius:50%;background:#fff;
+  animation:pulse 1s infinite
+}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.5)}}
-footer{margin-top:60px;font-size:12px;color:#888;text-align:center;line-height:1.6}
+footer{
+  width:100vw;
+  font-size:12px;color:#888;text-align:center;line-height:1.6;
+  position:absolute;bottom:16px;left:0;
+  pointer-events:none;
+}
 footer a{color:#888;text-decoration:none}
 footer a:hover{text-decoration:underline}
 </style>
@@ -25,9 +49,9 @@ footer a:hover{text-decoration:underline}
 <body>
 
 <div class="menu">
-  <button onclick="go('btn1')">🌱 幸福入口→</button>
-  <button onclick="go('btn2')">🚲 快乐入口→</button>
-  <button onclick="go('btn3')">🧘 养生入口→</button>
+  <button onclick="go('btn1')">🔗最新入口→</button>
+  <button onclick="go('btn2')">🔗最新入口→</button>
+  <button onclick="go('btn3')">🔗最新入口→</button>
   <button onclick="go('btn4')">💰做推广员➕商聊<br>🆔105818024</button>
 </div>
 
