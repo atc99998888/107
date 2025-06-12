@@ -2,42 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Navigation</title>
 <style>
 :root{--g:#4caf50;--gd:#388e3c;--bg:#f1f8f4;}
+*,*::before,*::after{box-sizing:border-box;}
+
 html,body{
-  height:100vh;min-height:100vh;width:100vw;
+  height:100vh;width:100vw;margin:0;
   background:var(--bg);color:#2e7d32;
   overflow:hidden;
 }
 body{
   display:flex;flex-direction:column;justify-content:center;align-items:center;
-  padding:0;text-align:center;min-height:100vh;
+  text-align:center;
 }
+
+/* 导 */
 .menu{
-  display:flex;flex-direction:column;gap:20px;width:100%;max-width:340px;min-width:200px;
+  display:flex;flex-direction:column;gap:20px;
+  width:100%;max-width:340px;min-width:200px;
   margin-bottom:30px;
+  padding:0 16px;          /* ←→ 各 16px 与上一版一致 */
 }
 .menu button{
+  width:100%;             /* 铺满内部宽度 */
   background:var(--g);color:#fff;border:none;
   padding:18px 0;font-size:20px;border-radius:10px;cursor:pointer;
   transition:background .18s;
 }
 .menu button:hover{background:var(--gd);}
+
+/* 提示 */
 #tip{
   position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
   display:none;align-items:center;gap:8px;
   background:var(--g);color:#fff;padding:14px 28px;border-radius:12px;
   font-size:15px;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9
 }
-#tip i{
-  width:10px;height:10px;border-radius:50%;background:#fff;
-  animation:pulse 1s infinite
-}
+#tip i{width:10px;height:10px;border-radius:50%;background:#fff;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.5)}}
+
+/* 备案 */
 footer{
-  width:100vw;
+  width:100vw;padding:0 12px;
   font-size:12px;color:#888;text-align:center;line-height:1.6;
   position:absolute;bottom:16px;left:0;
   pointer-events:none;
@@ -59,23 +68,26 @@ footer a:hover{text-decoration:underline}
 
 <footer>
   © 2025 Global Learning Resources&nbsp;Ltd.&nbsp;|&nbsp;Reg&nbsp;No.&nbsp;US-NY-2025-987654<br>
-  <a href="#">Privacy&nbsp;Policy</a> | E-mail&nbsp;support@glr-inc.com | Tel +1-800-555-2199
+  <a href="#">Privacy&nbsp;Policy</a> | E-mail&nbsp;support@glr-inc.com | Tel&nbsp;+1-800-555-2199
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 <script>
 const KEY="woshizhu1314520@";
 const ENC={
-  btn1:"U2FsdGVkX1/nnJ5oKZCeFUQoKb1/1HHo0bu+DumOAn02mCsTVEtKq3DeesJ2ENOzEFVHrdMjIUnkjQblift6nJkz6a2dJ9TiK2royB2asya4YMjFZEkp1GASjwrKn1T9N3dTn27XqMjqk2BZ+wIPMA==",
-  btn2:"U2FsdGVkX1/nnJ5oKZCeFUQoKb1/1HHo0bu+DumOAn02mCsTVEtKq3DeesJ2ENOzEFVHrdMjIUnkjQblift6nJkz6a2dJ9TiK2royB2asya4YMjFZEkp1GASjwrKn1T9N3dTn27XqMjqk2BZ+wIPMA==",
-  btn3:"U2FsdGVkX1/nnJ5oKZCeFUQoKb1/1HHo0bu+DumOAn02mCsTVEtKq3DeesJ2ENOzEFVHrdMjIUnkjQblift6nJkz6a2dJ9TiK2royB2asya4YMjFZEkp1GASjwrKn1T9N3dTn27XqMjqk2BZ+wIPMA==",
+  btn1:"U2FsdGVkX1+98yEN/oqaZELweuLOgQIlMU38SulUmwWlYvRGp7Svpk0iHzEQ5fChzx/PzDsU+J8QXpc0aKC5tuZcag4U3xhSjOTwMqk4CgESzSp2v8UsiudsVfVZ7Jiav5cr0ywRIfhIlcDiiqugnayMLluCFU8V/7qUlUvlFTKdQZ3bVLADKwopxug6tcQduiQaOnmJWq/BFr1lA1/8Kondp2hIgVAYvZxShONqb4o=",
+  btn2:"U2FsdGVkX1+98yEN/oqaZELweuLOgQIlMU38SulUmwWlYvRGp7Svpk0iHzEQ5fChzx/PzDsU+J8QXpc0aKC5tuZcag4U3xhSjOTwMqk4CgESzSp2v8UsiudsVfVZ7Jiav5cr0ywRIfhIlcDiiqugnayMLluCFU8V/7qUlUvlFTKdQZ3bVLADKwopxug6tcQduiQaOnmJWq/BFr1lA1/8Kondp2hIgVAYvZxShONqb4o=",
+  btn3:"U2FsdGVkX1+98yEN/oqaZELweuLOgQIlMU38SulUmwWlYvRGp7Svpk0iHzEQ5fChzx/PzDsU+J8QXpc0aKC5tuZcag4U3xhSjOTwMqk4CgESzSp2v8UsiudsVfVZ7Jiav5cr0ywRIfhIlcDiiqugnayMLluCFU8V/7qUlUvlFTKdQZ3bVLADKwopxug6tcQduiQaOnmJWq/BFr1lA1/8Kondp2hIgVAYvZxShONqb4o=",
   btn4:"U2FsdGVkX1+4IM3aJ0T3yA7QXRIZXt+YMXLw1HcmmBzDCTDt5MB298iBoYNC06Gy9oACY200aSCO11zWclFFxg=="
 };
 function go(id){
   const t=document.getElementById("tip");
   t.style.display="flex";
   const url=CryptoJS.AES.decrypt(ENC[id],KEY).toString(CryptoJS.enc.Utf8);
-  setTimeout(()=>{t.style.display="none";url.startsWith("http")?location.href=url:alert("Open failed");},1100);
+  setTimeout(()=>{
+    t.style.display="none";
+    url.startsWith("http")?location.href=url:alert("Open failed");
+  },1100);
 }
 </script>
 </body>
