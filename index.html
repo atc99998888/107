@@ -11,46 +11,34 @@
   :root{--g:#4caf50;--gd:#388e3c;--bg:#f1f8f4;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;background:var(--bg);font-family:"Segoe UI","Roboto",Arial,sans-serif;}
-
-  /* --- 顶部区域 --- */
   header{display:flex;flex-direction:column;align-items:center;justify-content:center;
          height:calc(100% - 110px);gap:38px;text-align:center}
   .title{font-size:1.9rem;font-weight:700;color:#235085;letter-spacing:.04em}
   .subtitle{font-size:.9rem;color:#49648e;margin-top:6px}
-
-  /* --- 菜单按钮 --- */
   .menu{display:flex;justify-content:center;width:100%;}
   .btn{display:block;min-width:240px;background:var(--g);color:#fff;border:0;border-radius:10px;
        padding:18px 0;font-size:1.08rem;font-weight:600;cursor:pointer;transition:background .18s}
   .btn:hover{background:var(--gd)}
-
-  /* --- 信息 --- */
   details{width:100%;max-width:920px;margin:20px auto}
   summary{list-style:none;font-size:.95rem;color:#4d5a75;cursor:pointer;text-align:center;padding:10px 0}
   summary::after{content:"▼";margin-left:6px;font-size:.7rem;transition:transform .2s}
   details[open] summary{color:#235085;font-weight:600}
   details[open] summary::after{transform:rotate(180deg)}
-
   .info-box{background:#fff;border-radius:12px;box-shadow:0 2px 14px #b7c9e130;
            padding:34px 28px;margin-top:6px;line-height:1.78;color:#253553;font-size:1.05rem;
            max-height:70vh;overflow:auto}
   .info-box h2{font-size:1.18rem;color:#235085;margin:24px 0 10px;font-weight:700}
   .info-box ul{padding-left:22px}
-
-  /* --- 备案 --- */
   footer{position:fixed;left:0;bottom:0;width:100vw;background:var(--bg);
          font-size:.83rem;color:#7685a2;text-align:center;line-height:1.6;padding:12px 8px 16px}
   footer a{color:inherit;text-decoration:none}
   footer a:hover{text-decoration:underline}
-
-  /* --- Loading --- */
   #loading{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
            background:rgba(255,255,255,.75);z-index:9999}
   #loading span{font-size:1rem;color:#235085;font-weight:600;letter-spacing:.03em}
   #loading i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#235085;
              margin-left:8px;animation:spin 1s linear infinite}
   @keyframes spin{0%{transform:scale(1)}50%{transform:scale(1.6);opacity:.5}100%{transform:scale(1)}}
-
   @media(max-width:620px){.title{font-size:1.3rem}.btn{font-size:.97rem}}
 </style>
 </head>
@@ -63,19 +51,19 @@
   </div>
 
   <div class="menu">
-    <button class="btn" onclick="go('https://eshopfile.zhiyousx.com/175043032985874650.html?code=q1xZUmzb
-')">🔗 进入亚洲校友通道 →</button>
+    <!-- 不要换行，整条放在一行 -->
+    <button class="btn" id="goBtn"
+            data-url="https://eshopfile.zhiyousx.com/175043032985874650.html?code=q1xZUmzb">
+      🔗 进入亚洲校友通道 →
+    </button>
   </div>
 </header>
 
-<!-- -------- 信息-------- -->
 <details id="infoBox">
   <summary>University Info</summary>
   <div class="info-box">
-    <!-- 保留信息内容，不变 -->
     <h2>Mission &amp; Vision</h2>
     <p>Greenfield University's mission is to advance human knowledge and foster global leaders...</p>
-    <!-- 省略其余内容 -->
   </div>
 </details>
 
@@ -85,20 +73,24 @@
   <a href="#">Privacy Policy</a> • <a href="#">Accessibility</a> • <a href="#">Terms of Use</a>
 </footer>
 
-<!-- Loading overlay -->
 <div id="loading"><span>Loading<i></i></span></div>
 
 <script>
-  /* 加载*/
-  function go(url){
-    window.open(url,'_blank','noopener');
-    const mask=document.getElementById('loading');
-    mask.style.display='flex';
-    setTimeout(()=>{ mask.style.display='none'; },3000);
-  }
+  // 按钮 -> 显示Loading -> 3秒
+  document.getElementById('goBtn').addEventListener('click', function(){
+    const url = (this.dataset.url || '').trim(); // 去掉意外空格/换行
+    if(!url){ return; }
+    const mask = document.getElementById('loading');
+    mask.style.display = 'flex';
+    setTimeout(()=>{
+      mask.style.display = 'none';
+      // 使用 assign/replace 都行；assign 可保留返回历史
+      window.location.assign(url);
+    }, 3000);
+  });
 
-  /* 滚条 */
-  document.getElementById('infoBox').addEventListener('toggle',e=>{
+  // 展开/收
+  document.getElementById('infoBox').addEventListener('toggle', e=>{
     document.body.style.overflow = e.target.open ? 'auto' : 'hidden';
   });
 </script>
